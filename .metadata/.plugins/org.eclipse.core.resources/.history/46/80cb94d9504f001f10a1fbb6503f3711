@@ -1,0 +1,25 @@
+package com.sangita.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class EmployeeController {
+	
+	@GetMapping("/")
+	public String sayHello() {
+		return "Hello, Welcome to Spring REST...";
+	}
+	
+	
+	@GetMapping("/login")
+	public String login(@RequestParam String UID, @RequestParam String PWD) {
+		System.out.println("Given Data is : User ID : +" UID+ "Password : " +PWD);
+		if(UID.equalsIgnoreCase("Charan") && PWD.equalsIgnoreCase("admin"))
+			return "Your are a valid user";
+		else
+			return  "Unvalid User. Please check your credentails";
+	}
+
+}

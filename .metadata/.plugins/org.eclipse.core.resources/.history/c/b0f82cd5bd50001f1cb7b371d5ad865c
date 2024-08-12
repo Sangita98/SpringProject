@@ -1,0 +1,66 @@
+package com.sangita.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sangita.data.Student;
+
+@RestController
+@RequestMapping("/student")
+public class StudentController {
+	
+	private List<Student> studentList = new ArrayList<>();
+		
+	@GetMapping("/")
+	public List<Student> getAllStudents(){
+		return studentList;
+	}
+	
+	@GetMapping("/{studID}")
+	public Student getStudentByIf(@PathVariable int StudID) {
+		Optional<Student> student = studentList.stream().filter(s ->s.getStudID()== StudID).findFirst();
+		return student.orElse(null);
+		
+	}
+	
+	@PostMapping("/insertData")
+	public String insertStudeData(@RequestBody Student student) {
+		studentList.add(student);
+		return "Student records inserted successfully : " +student;
+	}
+	
+	@PutMapping("/updateData")
+	public String updateStudentData(@RequestBody Student student) {
+		for(Student s : studentList) {
+			if(s.getStudID()== student.getStudID()) {
+				s.setName(student.getName());
+				s.setStream(student.getStream());
+				s.setMarks(student.getMarks());
+				
+				return "Student record update successfully";
+		}
+		return "Stuent record not fount for update";
+	}
+	
+	@DeleteMapping("/deleteData/{studID}")
+	public String deleteStudentData(@PathVariable int studID)
+	{
+		Option<Student> student = studentList.stream().filter(s ->s.getStudID()== studID).findFirst();
+		if(student.isPresent()) {
+			studentList.remove(student.get());
+			return "Student record deleeeeeeeeted successfully for studentId; "+studID;
+		}
+	}
+	
+	
+}

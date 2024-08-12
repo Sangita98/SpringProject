@@ -1,0 +1,8 @@
+package com.sangita.controller;
+
+@RestController
+public class StudentController {
+		
+	@GetMapping("/")
+	public String  
+}

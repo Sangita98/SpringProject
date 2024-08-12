@@ -1,0 +1,41 @@
+package com.sangita.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sangita.data.Employee;
+
+@RestController
+public class EmployeeController {
+	
+	@GetMapping("/")
+	public String sayHello() {
+		return "Hello, Welcome to Spring REST...";
+	}
+	
+	
+	@GetMapping("/login")
+	public String login(@RequestParam String UID, @RequestParam String PWD) {
+		System.out.println("Given Data is : User ID : " + UID + "Password : " +PWD);
+		if(UID.equalsIgnoreCase("Charan") && PWD.equalsIgnoreCase("admin"))
+			return "Your are a valid user";
+		else
+			return  "Unvalid User. Please check your credentails";
+	}
+	
+	@PostMapping("/insertData")
+	public String insertedData(@RequestBody Employee empobj) {
+		System.out.println("Reived data is : "+empobj);
+		return "Given record is inserted in the database successfully";
+}
+	@PutMapping("/updateData")
+	public String updateData(@RequestBody Employee emp) {
+		System.out.println("Given  Data to update is: "+emp);
+		
+		return "Given record is updated in the db Successfully...";
+	}
+}

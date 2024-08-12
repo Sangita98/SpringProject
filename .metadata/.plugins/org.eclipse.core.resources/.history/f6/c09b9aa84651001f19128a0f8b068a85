@@ -1,0 +1,8 @@
+ package com.sangita.controller;
+
+import com.sangita.data.Student;
+
+public class StudentController{
+	 
+	 Student obj =  new Student();
+	 List<Student> list = new ArrayList<Stuuuudeeeee

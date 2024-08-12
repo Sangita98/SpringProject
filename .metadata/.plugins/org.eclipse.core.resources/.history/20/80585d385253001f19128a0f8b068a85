@@ -1,0 +1,6 @@
+
+spring.application.name=PAYROLL
+server.port=8082
+eureka.client.serviceUrl.defaultZone=http://localhost
+eureka.client.fetchCheck.enabled=true
+eureka.client.feetch-registry=true

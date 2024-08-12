@@ -1,0 +1,10 @@
+package com.sangita.controller;
+
+public class EmployeeController {
+	
+	@GetMapping("/")
+	public String sayHello() {
+		return "Hello, Welcome to Spring REST...";
+	}
+
+}

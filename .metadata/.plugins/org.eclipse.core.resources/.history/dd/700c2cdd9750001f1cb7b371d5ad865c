@@ -1,0 +1,8 @@
+package com.sangita.data;
+
+public class Student {
+	int studID;
+	String name;
+	String stream;
+	String marks;
+}

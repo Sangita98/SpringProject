@@ -1,0 +1,24 @@
+ package com.sangita.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sangita.data.Student;
+
+@RestController
+public class StudentController{
+	 
+	 Student obj =  new Student();
+	 List<Student> list = new ArrayList<Student>();
+	 
+	 @PostMapping("/inser")
+	 public String insertData(@RequestBody Student obj) {
+		 list.aadd(obj);
+		 System.out.println("Inserted Daata : "+obj);
+		 return "Student data is inserted successfully";
+	 }
+}

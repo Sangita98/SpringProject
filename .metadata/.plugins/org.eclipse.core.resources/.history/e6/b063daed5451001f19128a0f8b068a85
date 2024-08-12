@@ -1,0 +1,55 @@
+ package com.sangita.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sangita.data.Student;
+
+@RestController
+public class StudentController{
+	 
+	 Student obj = new Student();
+	 List<Student> list = new ArrayList<Student>();
+	 
+	 @PostMapping("/insert")
+	 public String insertData(@RequestBody Student obj) {
+		 list.add(obj);
+		 System.out.println("Inserted Data : "+obj);
+		 return "Student data is inserted successfully";
+	 }
+	 
+	 @PutMapping("/update")
+	 public String updateData(@RequestBody Student obj) {
+		 list.add(obj);
+		 System.out.println("Updaated Data : "+obj);
+		 
+		 return "Student data updated successfully";
+	 }
+	 
+	 @DeleteMapping("//delete/{studID}")
+	 public String delete(@PathVariable int studID) {
+		 System.out.println("Data of given id = " +studID+ " is deleted successfully");
+		 return "Data of the given = " +studID+ " is deleted successfully";	 
+	 }
+	 
+	 @GetMapping("/get")
+	 public List<Student> get(){
+		 System.out.println("List of student : ");
+		 
+		 for(Student student: list) {
+			 System.out.println(student);
+		 }
+		 return list;
+		 
+	}
+	
+	
+}

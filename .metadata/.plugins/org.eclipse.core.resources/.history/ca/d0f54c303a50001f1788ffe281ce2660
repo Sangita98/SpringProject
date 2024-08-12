@@ -1,0 +1,137 @@
+package test_hibernate;
+
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.metamodel.relational.Database;
+
+
+public class Hibernate_CRUD_Operations {
+	private static SessionFactory factory;
+	
+	//Obtain the seeion factory
+	public static void getSessionFactory() {
+		try {
+			Configuration conf = new Configuration().configure();
+			StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+					.applySettings(conf.getProperties());
+			factory = conf.buildSessionFactory(builder.build());
+		}catch(Throwable ex) {
+			System.out.println("Exception is : "+ex);
+		}
+	}
+		
+		
+		public static void main(String args[]) {
+			getSessionFactory();
+			
+			Hibernate_CRUD_Operations obj = new Hibernate_CRUD_Operations();
+			
+			Employee emp1 = new Employee(101, "Sangita", "Uprade", 50000);
+			Employee emp2 = new Employee(102, "Rishika", "Harde", 50000);
+			Employee emp3 = new Employee(103, "Parh", "Sekh", 50000);
+			obj.insertIntoDatabase(emp1);
+			obj.insertIntoDatabase(emp2);
+			obj.insertIntoDatabase(emp3);
+			
+			//Display the record from the database
+			
+			obj.displayRecords();
+			
+			// Display the data using Native SQL
+			obj.displayRecords_NativeSQL();
+			
+			// update the record
+			obj.updateRecord(102, 55000);
+			
+			//Delete record.
+			obj.deleteRecord(103);
+		
+	}
+		
+		public void insertIntoDatabase(Employee emp) {
+			try {
+				Session session = factory.openSession();
+				Transaction tx = session.beginTransaction();
+				
+				System.out.println("Given record is inserted in the database sucessfully.");
+				session.close();
+				
+			}catch(HibernateException ex) {
+				System.out.println("Exception is : "+ex);
+				
+			}
+		}
+			
+			//Display Record
+			
+			public void displayRecords() {
+				try {
+					
+				}catch(HibernateException ex) {
+					System.out.println(ex);
+					
+				}
+			}
+				
+				//display the recorde in nave SQL...
+
+				public void displayRecords_NativeSQL() {
+					try {
+						Session sessionobj = factory.openSession();
+						List<Employee> empList = sessionObj.createQuery("From Employee").list();
+						System.out.println("List of record in the db are : ");
+						for(Employee emp : empList)
+							Syetem.out.println(emp);
+						sessionObj.close();
+						
+					}catch(HibernateException ex) {
+						System.out.println(ex);
+						
+					}
+				}
+
+				public void updateRecord(int i, int j) {
+					// TODO Auto-generated method stub
+					try {
+						Session sessionObj = factory.openSession()
+;
+						Transaction tx = sessionObj.beginTransaction();
+						
+						//SELECT * FROM <table> WHERE id = <given id>
+						Employee emp = (Employee) sessionObj.get(Employee.Class(), id);
+						emp.setSalary(salary);
+						sessionObj.update(emp); //update
+						tx.commit();
+						System.out.println("Given record is updated in the db successfully....");
+						sessionObj.close();
+						
+					}catch(HibernateException ex) {
+						System.out.println(ex);
+						
+					}
+					
+				}
+
+				public void deleteRecord(int i) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	
+
+
+	
+				
+				//Delete a record in the Database.class
+				
+			
+			
+		
+
+}

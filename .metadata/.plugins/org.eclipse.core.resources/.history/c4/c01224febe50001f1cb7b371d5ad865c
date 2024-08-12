@@ -1,0 +1,57 @@
+package com.sangita.data;
+
+public class Student {
+	int studID;
+	String name;
+	String stream;
+	String marks;
+	
+	Student(){}
+
+	public Student(int studID, String name, String stream, String marks) {
+		super();
+		this.studID = studID;
+		this.name = name;
+		this.stream = stream;
+		this.marks = marks;
+	}
+
+	public int getStudID() {
+		return studID;
+	}
+
+	public void setStudID(int studID) {
+		this.studID = studID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStream() {
+		return stream;
+	}
+
+	public void setStream(String stream) {
+		this.stream = stream;
+	}
+
+	public String getMarks() {
+		return marks;
+	}
+
+	public void setMarks(String marks) {
+		this.marks = marks;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [studID=" + studID + ", name=" + name + ", stream=" + stream + ", marks=" + marks + "]";
+	}
+	
+	
+}
